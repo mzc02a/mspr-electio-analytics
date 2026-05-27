@@ -40,76 +40,79 @@ st.sidebar.header("Données de la commune")
 # CHAMPS UTILISATEUR
 
 
-commune = st.sidebar.text_input("Commune", "Paris")
+commune = st.sidebar.text_input(
+    "Commune",
+    "Vitry-sur-Seine"
+)
 
 population_totale_2022 = st.sidebar.number_input(
     "Population totale 2022",
-    value=2100000.0
+    value=95282.0
 )
 
 population_15_29_ans = st.sidebar.number_input(
     "Population 15-29 ans",
-    value=430000.0
+    value=20176.10
 )
 
 population_45_59_ans = st.sidebar.number_input(
     "Population 45-59 ans",
-    value=380000.0
+    value=18214.75
 )
 
 population_60_74_ans = st.sidebar.number_input(
     "Population 60-74 ans",
-    value=270000.0
+    value=12513.07
 )
 
 revenu_median_menages_2021 = st.sidebar.number_input(
     "Revenu médian ménages 2021",
-    value=32000.0
+    value=19490.0
 )
 
 nombre_total_etablissements_2023 = st.sidebar.number_input(
     "Nombre total établissements 2023",
-    value=180000.0
+    value=6449.0
 )
 
 entreprises_par_habitant = st.sidebar.number_input(
     "Entreprises par habitant",
-    value=0.085
+    value=0.0677
 )
 
 taux_chomage_global = st.sidebar.number_input(
     "Taux chômage global",
-    value=0.08
+    value=0.1428
 )
 
 taux_pauvrete_total_2021 = st.sidebar.number_input(
     "Taux pauvreté total 2021",
-    value=0.14
+    value=26.0
 )
 
 taux_hlm = st.sidebar.number_input(
     "Taux HLM",
-    value=0.18
+    value=0.3370
 )
 
 associations_par_habitant = st.sidebar.number_input(
     "Associations par habitant",
-    value=0.02
+    value=0.0184
 )
 
 participation_reelle = st.sidebar.number_input(
     "Participation réelle",
-    value=0.76
+    value=0.6911
 )
 
 taux_logements_vacants = st.sidebar.number_input(
     "Taux logements vacants",
-    value=0.07
+    value=0.0498
 )
 
 taux_cambriolage = st.sidebar.number_input(
     "Taux cambriolage",
-    value=5.2
+    value=11.3244
 )
 
 
