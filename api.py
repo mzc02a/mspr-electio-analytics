@@ -7,8 +7,8 @@ import joblib
 # INITIALISATION DE L'API
 
 app = FastAPI(
-    title="API de prédiction électorale",
-    description="API MSPR Electio-Analytics pour la prédiction électorale",
+    title="Prédiction électorale",
+    description="MSPR Electio-Analytics pour la prédiction électorale",
     version="1.0"
 )
 
@@ -129,22 +129,25 @@ def predict_winner(data: CommuneScenarioInput):
             "score_brut_modele": round(score_brut, 4)
         })
 
-    # Normalisation des scores pour obtenir une somme de 100 %
+    # Transformation des scores bruts en voix prédites
+    # Chaque score est réparti proportionnellement sur la population totale.
     total_score = sum(item["score_brut_modele"] for item in results)
 
     for item in results:
-        item["pourcentage_voix_estime"] = round(
-            (item["score_brut_modele"] / total_score) * 100,
-            2
+        item["voix_predites_estimees"] = int(
+            round(
+                (item["score_brut_modele"] / total_score)
+                * data.population_totale_2022
+            )
         )
 
-        # Suppression du score brut pour ne garder que le pourcentage métier
+        # Suppression du score brut pour garder un résultat métier lisible
         del item["score_brut_modele"]
 
-    # Classement des candidats par pourcentage estimé
+    # Classement des candidats par voix prédites
     classement = sorted(
         results,
-        key=lambda x: x["pourcentage_voix_estime"],
+        key=lambda x: x["voix_predites_estimees"],
         reverse=True
     )
 
@@ -154,6 +157,6 @@ def predict_winner(data: CommuneScenarioInput):
         "commune": data.commune,
         "gagnant_predit": gagnant["candidat"],
         "famille_politique_gagnant": gagnant["famille_politique"],
-        "pourcentage_estime": gagnant["pourcentage_voix_estime"],
+        "voix_estimees": gagnant["voix_predites_estimees"],
         "classement_complet": classement
     }

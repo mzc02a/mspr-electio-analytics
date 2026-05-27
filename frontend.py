@@ -187,8 +187,8 @@ if st.button("Prédire le gagnant"):
         )
 
         st.metric(
-            label="Pourcentage estimé",
-            value=f'{result["pourcentage_estime"]}%'
+            label="Voix estimées",
+            value=f'{result["voix_estimees"]} voix'
         )
 
         # TABLEAU COMPLET
